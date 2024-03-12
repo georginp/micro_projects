@@ -1,6 +1,3 @@
-tasks = []
-
-
 def main_menu():
     print()
     print("===== To-Do List Menu =====")
@@ -11,17 +8,17 @@ def main_menu():
     print()
 
 
-def add_task():
+def add_task(tasks):
     print()
-    task = input("Enter a task description:")
+    task = input("Enter a task description: ")
     tasks.append({"task_description": task, "completed_status": False})
     print(f"Task '{task}' added successfully!")
     print()
 
 
-def mark_task_completed():
+def mark_task_completed(tasks):
     if tasks:
-        view_all_tasks()
+        view_all_tasks(tasks)
         task_index = int(input("Enter the index of the task to mark as completed: "))
         if 0 <= task_index < len(tasks):
             tasks[task_index]["completed_status"] = True
@@ -33,7 +30,7 @@ def mark_task_completed():
         print("Please first add tasks to the list!")
 
 
-def view_all_tasks():
+def view_all_tasks(tasks):
     if tasks:
         print("===== Tasks =====")
         for index, task in enumerate(tasks):
@@ -44,17 +41,18 @@ def view_all_tasks():
 
 
 def main():
+    tasks = []
     while True:
         main_menu()
 
         choice = input(("Enter your choice (1-4): "))
 
         if choice == "1":
-            add_task()
+            add_task(tasks)
         elif choice == "2":
-            mark_task_completed()
+            mark_task_completed(tasks)
         elif choice == "3":
-            view_all_tasks()
+            view_all_tasks(tasks)
         elif choice == "4":
             print("Exiting the program. Goodbye!")
             break
